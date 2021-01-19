@@ -11,3 +11,127 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.main-area {
+	height: 100vh;
+	width: 100vw;
+	display: grid;
+	grid-template-columns: [left-col] 50px [center-col] auto [right-col] 200px [end-col];
+	grid-template-rows: [top-row] 50px [main-row] auto [row-end];
+	background: #f3f3f3;
+}
+
+.workspace-area {
+	grid-column-start: center-col;
+	grid-row-start: main-row;
+	overflow: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+.canvas-container {
+	position: relative;
+/*	overflow: auto;
+	width: 650px;
+	height: 450px;*/
+	background: #ffffff;
+	border: 1px solid black;
+}
+
+.canvas {
+	position: absolute;
+}
+
+.tools-area {
+	grid-column-start: left-col;
+	grid-column-end: end-col;
+	grid-row-start: top-row;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	background: blue;
+}
+
+.tools-itm {
+	height: 100%;
+	cursor: pointer;
+	color: red;
+	padding: 5px;
+	transition: all 0.25s ease;
+}
+
+.tools-itm:hover {
+	background-color: gray;
+}
+
+.tools-itm-selected {
+	stroke: black;
+	stroke-width: 20;
+}
+
+.controls-area {
+	grid-column-start: right-col;
+	grid-row-start: main-row;
+	background: red;
+}
+
+.controls-item {
+	margin: 5px;
+}
+
+.layer-controls {
+	width: 100%;
+}
+
+.layer-controls-button-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.layer-controls-button {
+	cursor: pointer;
+	transition: all 0.25s ease;
+}
+
+.layer-controls-button:hover {
+	background-color: gray;
+}
+
+.layer-item {
+	display: flex;
+	margin: 5px;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.color-picker-selected {
+	height: 40px;
+	width: 40px;
+	border: black;
+	border-style: solid;
+}
+
+.pattern-buttons-container {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.pattern-button {
+	width: 25px;
+	height: 25px;
+	margin: 5px;
+	background: white
+}
+
+.canvas {
+	image-rendering: optimizeSpeed;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: -webkit-crisp-edges;
+	image-rendering: -webkit-optimize-contrast;
+	image-rendering: pixelated;
+	image-rendering: crisp-edges;
+	-ms-interpolation-mode: nearest-neighbor;
+}

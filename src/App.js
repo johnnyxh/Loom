@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+
+import LoomCanvas from './components/LoomCanvas';
+import Tools from './components/Tools';
+import Controls from './components/Controls';
+
+import { LoomContextProvider } from './context/LoomContext';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    return (
+    <LoomContextProvider>
+        <div className="main-area">
+            <Tools />
+            <LoomCanvas />
+            <Controls />
+        </div>
+    </LoomContextProvider>
   );
 }
 
