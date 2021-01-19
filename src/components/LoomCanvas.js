@@ -319,8 +319,8 @@ const LoomCanvas = () => {
         horizontal={dragEnabled} >
             <div className="canvas-container"
             style={{
-                width: 650 * zoom,
-                height: 450 * zoom
+                minWidth: 650 * zoom,
+                minHeight: 450 * zoom
             }}
             ref={canvasContainerRef} >
                 {layerProperties.map((layer) => {
