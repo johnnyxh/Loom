@@ -35,6 +35,47 @@ const LoomCanvas = () => {
     const canvasContainerRef = useRef(null);
     const workspaceAreaRef = useRef(null);
 
+    // Setup scrolling listeners
+    useEffect(() => {
+        const workspaceArea = workspaceAreaRef.current;
+
+        const onMiddleMouseDown = (e) => {
+            if (e.button === 4) {
+                setDragEnabled(true);
+            }
+        };
+
+        const onMiddleMouseUp = (e) => {
+            if (e.button === 4) {
+                setDragEnabled(false);
+            }
+        };
+
+        const onTwoTouchStart = (e) => {
+            if (e.touches.length === 2) {
+                setDragEnabled(true);
+            }
+        };
+
+        const onTouchEnd = (e) => {
+            setDragEnabled(false);
+        };
+
+        workspaceArea.addEventListener('mousedown', onMiddleMouseDown, false);
+        workspaceArea.addEventListener('mouseup', onMiddleMouseUp, false);
+        workspaceArea.addEventListener('touchstart', onTwoTouchStart, false);
+        workspaceArea.addEventListener('touchend', onTouchEnd, false);
+
+        return () => {
+            workspaceArea.removeEventListener('mousedown', onMiddleMouseDown);
+            workspaceArea.removeEventListener('mouseup', onMiddleMouseUp);
+            workspaceArea.removeEventListener('touchstart', onTwoTouchStart);
+            workspaceArea.removeEventListener('touchend', onTouchEnd);
+        };
+
+    }, []);
+
+    // Setup canvas tools listeners
     useEffect(() => {
         const workspaceArea = workspaceAreaRef.current;
 
@@ -104,10 +145,6 @@ const LoomCanvas = () => {
         };
 
         const onMouseUp = (e) => {
-            if (e.button === 4) {
-                setDragEnabled(false);
-            }
-
             if (toolHandlers && toolHandlers.onToolUp && usingTool) {
                 usingTool = false;
                 const offsetX = Math.trunc(e.offsetX / zoom);
@@ -149,10 +186,7 @@ const LoomCanvas = () => {
         const onMouseOut = (e) => { pointerIn = false; };
 
         const onMouseDown = (e) => {
-            if (e.button === 4) {
-                setDragEnabled(true);
-            }
-            else if (toolHandlers && toolHandlers.onToolDown && !activeLayerProperties.locked) {
+            if (toolHandlers && toolHandlers.onToolDown && !activeLayerProperties.locked) {
                 if (toolHandlers.onToolMove) {
                     usingTool = true;
                     canvasContainer.addEventListener('mousemove', onMouseMove, false);
@@ -207,7 +241,6 @@ const LoomCanvas = () => {
 
         const onTouchEnd = (e) => {
             e.preventDefault();
-            setDragEnabled(false);
 
             if (toolHandlers && toolHandlers.onToolUp && usingTool) {
                 const offsetX = Math.trunc((previousEvt.touches[0].pageX - canvasRect.left) / zoom);
@@ -248,11 +281,8 @@ const LoomCanvas = () => {
 
         const onTouchStart = (e) => {
             e.preventDefault();
-            if (e.touches.length === 2) {
-                setDragEnabled(true);
-            }
 
-            else if (toolHandlers && toolHandlers.onToolDown && !activeLayerProperties.locked) {
+            if (e.touches.length === 1 && toolHandlers && toolHandlers.onToolDown && !activeLayerProperties.locked) {
                 canvasRect = canvasContainer.getBoundingClientRect()
 
                 if (toolHandlers.onToolMove) {
@@ -315,6 +345,8 @@ const LoomCanvas = () => {
         <ScrollContainer
         innerRef={workspaceAreaRef}
         className="workspace-area"
+        nativeMobileScroll={false}
+        hideScrollbars={false}
         vertical={dragEnabled}
         horizontal={dragEnabled} >
             <div className="canvas-container"
