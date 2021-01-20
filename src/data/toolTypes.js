@@ -3,6 +3,7 @@ import AT from './attributeTypes';
 const toolTypes = {
 	move: 'move',
 	scale: 'scale',
+	rotate: 'rotate',
 	brush: 'brush',
 	eraser: 'eraser',
 	fill: 'fill',
@@ -13,6 +14,7 @@ const toolTypes = {
 export const toolProperties = {
 	move: {},
 	scale: {},
+	rotate: {},
 	eyedrop: {},
 	brush: {
 		get: 'brushProperties',
@@ -31,6 +33,7 @@ export const toolProperties = {
 export const toolAttributes = {
 	move: {},
 	scale: {},
+	rotate: {},
 	eyedrop: {},
 	brush: {
 		size: AT.range,

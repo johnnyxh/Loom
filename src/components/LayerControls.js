@@ -153,7 +153,7 @@ const LayerControls = () => {
 		<div className="layer-controls">
 			<div className="layer-controls-title">Layers</div>
 			<div className="layer-items-container">
-				{layerProperties.map((layer) => {
+				{layerProperties.slice(0).reverse().map((layer) => {
 					return <LayerItem
 						name={layer.name}
 						key={layer.key}
