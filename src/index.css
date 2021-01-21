@@ -1,5 +1,10 @@
+html {
+	height: 100%;
+}
+
 body {
   margin: 0;
+  height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -24,7 +29,6 @@ code {
 .workspace-area {
 	grid-column-start: center-col;
 	grid-row-start: main-row;
-	overflow: auto;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -84,10 +88,18 @@ code {
 
 .layer-controls {
 	width: 100%;
+	max-height: 40vh;
+	display: flex;
+	flex-flow: column;
+}
+
+.layer-controls-title {
+	flex: 0 1 auto;
 }
 
 .layer-controls-button-container {
 	display: flex;
+	flex: 0 1 auto;
 	justify-content: space-between;
 }
 
@@ -98,6 +110,11 @@ code {
 
 .layer-controls-button:hover {
 	background-color: gray;
+}
+
+.layer-items-container {
+	flex: 1 1 auto;
+	overflow-y: auto;
 }
 
 .layer-item {
