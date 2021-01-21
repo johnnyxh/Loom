@@ -20,6 +20,7 @@ const Brush = () => {
 		setCurrentTool(toolTypes.brush);
 	};
 
+	//TODO: Remove useEffect its not required
 	useEffect(() => {
 		if (currentTool === toolTypes.brush) {
 

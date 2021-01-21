@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -12,32 +12,28 @@ const Rotate = () => {
 	const { currentTool, setCurrentTool } = useContext(LoomCanvasPropsContext);
 	const { setToolHandlers } = useContext(LoomToolHandlersContext);
 
-	const RotateFn = (ctx, tmpCtx, prevMove, currentMove, origMove) => {
-		ctx.clearRect(0, 0, 650, 450); //TODO: Remove hardcoded
-		ctx.setTransform(1, 0, 0, 1, origMove.x, origMove.y);
-		ctx.rotate((currentMove.x - origMove.x) * Math.PI / 180);
-		ctx.drawImage(tmpCtx.canvas, -origMove.x, -origMove.y);
-		ctx.setTransform(1, 0, 0, 1, 0, 0);
-
-		return {
-			topLeft: {x: 0, y: 0},
-			bottomRight: {x: 650, y: 450}
-		};
-	};
-
 	const onToolSelect = () => {
 		setCurrentTool(toolTypes.rotate);
-	};
 
-	useEffect(() => {
-		if (currentTool === toolTypes.rotate) {
-			setToolHandlers({
-				onToolDown: () => {},
-				onToolMove: RotateFn,
-				onToolUp: () => {},
-			});
-		}
-	}, [currentTool, setToolHandlers]);
+		const RotateFn = (ctx, tmpCtx, prevMove, currentMove, origMove) => {
+			ctx.clearRect(0, 0, 650, 450); //TODO: Remove hardcoded
+			ctx.setTransform(1, 0, 0, 1, origMove.x, origMove.y);
+			ctx.rotate((currentMove.x - origMove.x) * Math.PI / 180);
+			ctx.drawImage(tmpCtx.canvas, -origMove.x, -origMove.y);
+			ctx.setTransform(1, 0, 0, 1, 0, 0);
+
+			return {
+				topLeft: {x: 0, y: 0},
+				bottomRight: {x: 650, y: 450}
+			};
+		};
+
+		setToolHandlers({
+			onToolDown: () => {},
+			onToolMove: RotateFn,
+			onToolUp: () => {},
+		});
+	};
 
 	return (
 		<div

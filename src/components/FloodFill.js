@@ -110,6 +110,7 @@ const FloodFill = () => {
 		setCurrentTool(toolTypes.fill);
 	};
 
+	//TODO: Hacky way of updating toolfn for properties. Fix
 	useEffect(() => {
 		if (currentTool === toolTypes.fill) {
 

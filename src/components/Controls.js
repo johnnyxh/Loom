@@ -23,7 +23,7 @@ const AttributeInput = ({ type, value, onChange }) => {
 	switch(type) {
 		case AT.color:
 			return <ColorPicker
-				color={value}
+				color={ value }
 				onChangeComplete={ newVal => onChange(newVal.hex) }
 			/>
 		case AT.range:

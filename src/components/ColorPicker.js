@@ -3,7 +3,7 @@ import { GithubPicker, ChromePicker } from 'react-color';
 
 const ColorPicker = ({color, colors, onChangeComplete}) => {
 	const [chromePickerVisibile, setChromePickerVisible] = useState(false);
-	const [internalColor, setInternalColor] = useState(color);
+	let internalColor = color;
 
 	const popover = {
 		right: '10px',
@@ -39,7 +39,7 @@ const ColorPicker = ({color, colors, onChangeComplete}) => {
 			/>
 				{
 					chromePickerVisibile ?
-						<div style={popover} onClick={e => e.stopPropagation() }><ChromePicker color={internalColor} onChange={e => setInternalColor(e.hex)} onChangeComplete={onChangeComplete}/></div>
+						<div style={popover} onClick={e => e.stopPropagation() }><ChromePicker color={internalColor} onChange={e => internalColor = e.hex} onChangeComplete={onChangeComplete}/></div>
 						: null
 				}
 			<GithubPicker
@@ -47,7 +47,7 @@ const ColorPicker = ({color, colors, onChangeComplete}) => {
 				triangle="hide"
 				color={internalColor}
 				onChangeComplete={e => {
-				setInternalColor(e.hex);
+				internalColor = e.hex;
 				onChangeComplete(e);
 			}}/>
 		</div>

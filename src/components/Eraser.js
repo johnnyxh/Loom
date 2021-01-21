@@ -18,6 +18,7 @@ const Eraser = () => {
 		setCurrentTool(toolTypes.eraser);
 	};
 
+	//TODO: Hacky way of updating toolfn for properties. Fix
 	useEffect(() => {
 		if (currentTool === toolTypes.eraser) {
 

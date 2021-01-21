@@ -91,6 +91,7 @@ const LoomCanvas = () => {
 
         tmpCtx.drawImage(canvas, 0, 0);
 
+        //TODO: Manage layer history within context
         if (!history.current.containsLayerHistory(activeLayer)) {
             history.current.addLayerHistory(activeLayer, ctx);
         }
