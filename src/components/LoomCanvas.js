@@ -40,13 +40,13 @@ const LoomCanvas = () => {
         const workspaceArea = workspaceAreaRef.current;
 
         const onMiddleMouseDown = (e) => {
-            if (e.button === 4) {
+            if (e.button === 1) {
                 setDragEnabled(true);
             }
         };
 
         const onMiddleMouseUp = (e) => {
-            if (e.button === 4) {
+            if (e.button === 1) {
                 setDragEnabled(false);
             }
         };
@@ -110,7 +110,7 @@ const LoomCanvas = () => {
 
         // Handle Mouse Events
         const onMouseMove = (e) => {
-            if (toolHandlers && toolHandlers.onToolMove && usingTool) {
+            if (e.button === 0 && toolHandlers && toolHandlers.onToolMove && usingTool) {
 
                 if (!pointerIn) {
                     pointerIn = true;
@@ -145,7 +145,7 @@ const LoomCanvas = () => {
         };
 
         const onMouseUp = (e) => {
-            if (toolHandlers && toolHandlers.onToolUp && usingTool) {
+            if (e.button === 0 && toolHandlers && toolHandlers.onToolUp && usingTool) {
                 usingTool = false;
                 const offsetX = Math.trunc(e.offsetX / zoom);
                 const offsetY = Math.trunc(e.offsetY / zoom);
@@ -186,7 +186,7 @@ const LoomCanvas = () => {
         const onMouseOut = (e) => { pointerIn = false; };
 
         const onMouseDown = (e) => {
-            if (toolHandlers && toolHandlers.onToolDown && !activeLayerProperties.locked) {
+            if (e.button === 0 && toolHandlers && toolHandlers.onToolDown && !activeLayerProperties.locked) {
                 if (toolHandlers.onToolMove) {
                     usingTool = true;
                     canvasContainer.addEventListener('mousemove', onMouseMove, false);

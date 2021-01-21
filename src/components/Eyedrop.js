@@ -29,7 +29,7 @@ const Eyedrop = () => {
 					const layerKey = layerProperties[i].key;
 					const currentCtx = layerData.get(layerKey).getContext('2d');
 					const imgData = currentCtx.getImageData(x, y, 1, 1);
-					if (imgData.data[3] !== 0) {
+					if (imgData.data[3] !== 0 && layerProperties[i].visible) {
 						setActiveColor(rgbToHex(imgData.data[0], imgData.data[1], imgData.data[2]));
 						return;
 					}
