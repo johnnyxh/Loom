@@ -30,22 +30,22 @@ const GlobalControls = () => {
 	};
 
 	return (
-		<div>
-			<div className="controls-item">
-				<div className="controls-item-title">Zoom</div>
-				<div className="layer-controls-button-container">
-					<div className="layer-controls-button" onClick={onZoomIn}>
-						<FontAwesomeIcon icon={ faPlus } />
-					</div>
-					<div className="layer-controls-button" onClick={onZoomOut}>
-						<FontAwesomeIcon icon={ faMinus } />
-					</div>
-				</div>
-			</div>
-			<div className="controls-item">
-				<div className="controls-item-title">Color</div>
+		<div className="global-controls-area">
+			<div>
 				<ColorPicker color={activeColor} onChangeComplete={(e) => setActiveColor(e.hex)} />
 			</div>
+			<div className="zoom-area">
+				<div className="layer-controls-button" onClick={onZoomIn}>
+					<FontAwesomeIcon icon={ faPlus } size="2x" />
+				</div>
+				<div className="layer-controls-button" onClick={onZoomOut}>
+					<FontAwesomeIcon icon={ faMinus } size="2x" />
+				</div>
+				<h2 className="zoom-display">
+					{zoom}x
+				</h2>
+			</div>
+
 		</div>
 	);
 };

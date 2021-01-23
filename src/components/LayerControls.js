@@ -62,8 +62,8 @@ const LayerItem = ({ name, layer, isDirty, isVisible, isLocked, isActive, setAct
 		const preview = previewRef.current.getContext('2d');
 
 		if (isDirty) {
-			preview.clearRect(0, 0, 92, 64);
-			preview.drawImage((layerData.get(layer)), 0, 0, 92, 64);
+			preview.clearRect(0, 0, 65, 45);
+			preview.drawImage((layerData.get(layer)), 0, 0, 65, 45);
 
 			setLayerDirty(layer, false);
 		}
@@ -76,7 +76,7 @@ const LayerItem = ({ name, layer, isDirty, isVisible, isLocked, isActive, setAct
 			<div className="layer-controls-button" onClick={onToggleLock}>
 				<FontAwesomeIcon icon= { isLocked ? faLock : faUnlock } />
 			</div>
-			<canvas style={previewStyle} width="92px" height="64px" ref={previewRef} />
+			<canvas style={previewStyle} width="65px" height="45px" ref={previewRef} />
 			<span>{name}</span>
 		</div>
 	);

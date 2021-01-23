@@ -36,7 +36,7 @@ const Move = () => {
 		<div
 			className={`tools-itm ${currentTool === toolTypes.move ? 'tools-itm-selected' : ''}`}
 			onClick={onToolSelect}>
-			<FontAwesomeIcon icon={ faArrowsAlt } size="4x" />
+			<FontAwesomeIcon icon={ faArrowsAlt } size="3x" />
 		</div>
 	);
 };

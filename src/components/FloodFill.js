@@ -149,7 +149,7 @@ const FloodFill = () => {
 		<div
 			className={`tools-itm ${currentTool === toolTypes.fill ? 'tools-itm-selected' : ''}`}
 			onClick={onToolSelect}>
-			<FontAwesomeIcon icon={ faFill } size="4x" />
+			<FontAwesomeIcon icon={ faFill } size="3x" />
 		</div>
 	);
 };

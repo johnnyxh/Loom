@@ -58,7 +58,7 @@ const Eraser = () => {
 		<div
 			className={`tools-itm ${currentTool === toolTypes.eraser ? 'tools-itm-selected' : ''}`}
 			onClick={onToolSelect}>
-			<FontAwesomeIcon icon={ faEraser } size="4x" />
+			<FontAwesomeIcon icon={ faEraser } size="3x" />
 		</div>
 	);
 };

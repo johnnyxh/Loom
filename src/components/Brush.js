@@ -20,7 +20,7 @@ const Brush = () => {
 		setCurrentTool(toolTypes.brush);
 	};
 
-	//TODO: Remove useEffect its not required
+	//TODO: Hacky way of updating toolfn for properties. Fix
 	useEffect(() => {
 		if (currentTool === toolTypes.brush) {
 
@@ -60,7 +60,7 @@ const Brush = () => {
 		<div
 			className={`tools-itm ${currentTool === toolTypes.brush ? 'tools-itm-selected' : ''}`}
 			onClick={onToolSelect}>
-			<FontAwesomeIcon icon={ faPaintBrush } size="4x" />
+			<FontAwesomeIcon icon={ faPaintBrush } size="3x" />
 		</div>
 	);
 };

@@ -39,7 +39,7 @@ const Rotate = () => {
 		<div
 			className={`tools-itm ${currentTool === toolTypes.rotate ? 'tools-itm-selected' : ''}`}
 			onClick={onToolSelect}>
-			<FontAwesomeIcon icon={ faSyncAlt } size="4x" />
+			<FontAwesomeIcon icon={ faSyncAlt } size="3x" />
 		</div>
 	);
 };

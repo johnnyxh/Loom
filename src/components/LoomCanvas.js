@@ -213,12 +213,12 @@ const LoomCanvas = () => {
         const onTouchMove = (e) => {
             e.preventDefault();
             if (e.touches.length === 1 && toolHandlers && toolHandlers.onToolMove && usingTool) {
-                const fromOffsetX = Math.trunc((previousEvt.touches[0].clientX - canvasRect.left) / zoom);
-                const fromOffsetY = Math.trunc((previousEvt.touches[0].clientY - canvasRect.top) / zoom);
-                const toOffsetX = Math.trunc((e.touches[0].pageX - canvasRect.left) / zoom);
-                const toOffsetY = Math.trunc((e.touches[0].pageY - canvasRect.top) / zoom);
-                const originalOffsetX = Math.trunc((originalEvt.touches[0].pageX - canvasRect.left) / zoom);
-                const originalOffsetY = Math.trunc((originalEvt.touches[0].pageY - canvasRect.top) / zoom);
+                const fromOffsetX = Math.trunc((previousEvt.touches[0].clientX - canvasRect.left + canvasContainer.scrollLeft) / zoom);
+                const fromOffsetY = Math.trunc((previousEvt.touches[0].clientY - canvasRect.top + canvasContainer.scrollTop) / zoom);
+                const toOffsetX = Math.trunc((e.touches[0].pageX - canvasRect.left + canvasContainer.scrollLeft) / zoom);
+                const toOffsetY = Math.trunc((e.touches[0].pageY - canvasRect.top + canvasContainer.scrollTop) / zoom);
+                const originalOffsetX = Math.trunc((originalEvt.touches[0].pageX - canvasRect.left + canvasContainer.scrollLeft) / zoom);
+                const originalOffsetY = Math.trunc((originalEvt.touches[0].pageY - canvasRect.top + canvasContainer.scrollTop) / zoom);
                 
                 const affectedPixels = toolHandlers.onToolMove(
                     ctx,
@@ -244,8 +244,8 @@ const LoomCanvas = () => {
             e.preventDefault();
 
             if (toolHandlers && toolHandlers.onToolUp && usingTool) {
-                const offsetX = Math.trunc((previousEvt.touches[0].pageX - canvasRect.left) / zoom);
-                const offsetY = Math.trunc((previousEvt.touches[0].pageY - canvasRect.top) / zoom);
+                const offsetX = Math.trunc((previousEvt.touches[0].pageX - canvasRect.left + canvasContainer.scrollLeft) / zoom);
+                const offsetY = Math.trunc((previousEvt.touches[0].pageY - canvasRect.top + canvasContainer.scrollTop) / zoom);
                 
                 usingTool = false;
                 const affectedPixels = toolHandlers.onToolUp(ctx, tmpCtx, offsetX, offsetY);
@@ -294,8 +294,8 @@ const LoomCanvas = () => {
                 previousEvt = e;
                 originalEvt = e;
 
-                const offsetX = Math.trunc((e.touches[0].pageX - canvasRect.left) / zoom);
-                const offsetY = Math.trunc((e.touches[0].pageY - canvasRect.top) / zoom);
+                const offsetX = Math.trunc((e.touches[0].pageX - canvasRect.left + canvasContainer.scrollLeft) / zoom);
+                const offsetY = Math.trunc((e.touches[0].pageY - canvasRect.top + canvasContainer.scrollTop) / zoom);
 
                 upperLeftCoord.x = offsetX;
                 upperLeftCoord.y = offsetY;
@@ -343,19 +343,14 @@ const LoomCanvas = () => {
     }, [toolHandlers, layerProperties, activeLayer, zoom]);
 
     return (
-        <ScrollContainer
-        innerRef={workspaceAreaRef}
-        className="workspace-area"
-        nativeMobileScroll={false}
-        hideScrollbars={false}
-        vertical={dragEnabled}
-        horizontal={dragEnabled} >
-            <div className="canvas-container"
-            style={{
-                minWidth: 650 * zoom,
-                minHeight: 450 * zoom
-            }}
-            ref={canvasContainerRef} >
+        <div ref={workspaceAreaRef} className="workspace-area">
+            <ScrollContainer
+            className="canvas-container"
+            innerRef={canvasContainerRef}
+            nativeMobileScroll={false}
+            hideScrollbars={false}
+            vertical={dragEnabled}
+            horizontal={dragEnabled} >
                 {layerProperties.map((layer) => {
                     return (<canvas
                         className='canvas'
@@ -370,8 +365,8 @@ const LoomCanvas = () => {
                         height={450}
                     />);
                 })}
-            </div>
-        </ScrollContainer>
+            </ScrollContainer>
+        </div>
     );
 };
 

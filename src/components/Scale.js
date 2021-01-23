@@ -40,7 +40,7 @@ const Scale = () => {
 		<div
 			className={`tools-itm ${currentTool === toolTypes.scale ? 'tools-itm-selected' : ''}`}
 			onClick={onToolSelect}>
-			<FontAwesomeIcon icon={ faExpandArrowsAlt } size="4x" />
+			<FontAwesomeIcon icon={ faExpandArrowsAlt } size="3x" />
 		</div>
 	);
 };

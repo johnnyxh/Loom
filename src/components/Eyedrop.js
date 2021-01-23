@@ -43,7 +43,7 @@ const Eyedrop = () => {
 		<div
 			className={`tools-itm ${currentTool === toolTypes.eyedrop ? 'tools-itm-selected' : ''}`}
 			onClick={onToolSelect}>
-			<FontAwesomeIcon icon={ faEyeDropper } size="4x" />
+			<FontAwesomeIcon icon={ faEyeDropper } size="3x" />
 		</div>
 	);
 };

@@ -7,7 +7,6 @@ import {
 } from '../context/LoomContext';
 
 import LayerControls from './LayerControls';
-import GlobalControls from './GlobalControls';
 import ColorPicker from './ColorPicker';
 import RangePicker from './RangePicker';
 import PatternPicker from './PatternPicker';
@@ -72,7 +71,6 @@ const Controls = () => {
 
 	return (
 		<div className="controls-area">
-			<GlobalControls />
 			<div>
 				{context.currentTool ? attributes[context.currentTool].map(attribute => {
 					return <ToolControlItem
