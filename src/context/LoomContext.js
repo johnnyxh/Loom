@@ -3,6 +3,7 @@ import React, {
     useState,
 } from 'react';
 
+import toolTypes from '../data/toolTypes';
 import PT from '../data/patternTypes';
 
 export const LoomBrushContext = createContext([]);
@@ -68,7 +69,7 @@ const LoomEraserProvider = ({ children }) => {
 
 const LoomCanvasPropsProvider = ({ children } ) => {
     const [activeColor, setActiveColor] = useState('#000000');
-    const [currentTool, setCurrentTool] = useState(null);
+    const [currentTool, setCurrentTool] = useState(toolTypes.brush);
     const [zoom, setZoom] = useState(1);
 
     return (
