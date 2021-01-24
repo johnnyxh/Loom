@@ -8,6 +8,7 @@ import {
 } from '../context/LoomContext';
 
 import toolTypes from '../data/toolTypes';
+import { createPattern } from '../utils/patterns';
 
 const Eraser = () => {
 	const { eraserProperties } = useContext(LoomEraserContext);
@@ -25,6 +26,7 @@ const Eraser = () => {
 			const EraserFn = (ctx, tmpCtx, prevMove, currentMove, origMove) => {
 				ctx.beginPath();
 			    ctx.moveTo(prevMove.x, prevMove.y);
+			    ctx.strokeStyle = createPattern(ctx, eraserProperties.pattern, '#000000');
 			    ctx.lineWidth = eraserProperties.size;
 			    ctx.lineCap = "round";
 			    ctx.lineJoin = "round";

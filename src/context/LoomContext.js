@@ -53,7 +53,8 @@ const LoomFillProvider = ({ children }) => {
 
 const LoomEraserProvider = ({ children }) => {
     const [eraserProperties, setEraserProperties] = useState({
-        size: 2
+        size: 2,
+        pattern: PT.solid
     });
 
     return (

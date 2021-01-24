@@ -40,7 +40,8 @@ export const toolAttributes = {
 		pattern: AT.pattern
 	},
 	eraser: {
-		size: AT.range
+		size: AT.range,
+		pattern: AT.pattern
 	},
 	fill: {
 		tolerance: AT.range,
