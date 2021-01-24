@@ -77,8 +77,6 @@ const LoomCanvas = () => {
 
     // Setup canvas tools listeners
     useEffect(() => {
-        const workspaceArea = workspaceAreaRef.current;
-
         const canvasContainer = canvasContainerRef.current;
 
         const canvas = canvasRef.current;
@@ -180,7 +178,7 @@ const LoomCanvas = () => {
                 
                 canvasContainer.removeEventListener('mousemove', onMouseMove);
                 canvasContainer.removeEventListener('mouseout', onMouseOut);
-                workspaceArea.removeEventListener('mouseup', onMouseUp);
+                document.removeEventListener('mouseup', onMouseUp);
             }
         };
 
@@ -192,7 +190,7 @@ const LoomCanvas = () => {
                     usingTool = true;
                     canvasContainer.addEventListener('mousemove', onMouseMove, false);
                     canvasContainer.addEventListener('mouseout', onMouseOut, false);
-                    workspaceArea.addEventListener('mouseup', onMouseUp, false);
+                    document.addEventListener('mouseup', onMouseUp, false);
                 }
 
                 const offsetX = Math.trunc(e.offsetX / zoom);
@@ -333,12 +331,12 @@ const LoomCanvas = () => {
             }
         };
 
-        workspaceArea.addEventListener('mousedown', onMouseDown, false);
+        document.addEventListener('mousedown', onMouseDown, false);
         canvasContainer.addEventListener('touchstart', onTouchStart, false);
         window.addEventListener('keydown', onKeyDown, false);
 
         return () => {
-            workspaceArea.removeEventListener('mousedown', onMouseDown);
+            document.removeEventListener('mousedown', onMouseDown);
             canvasContainer.removeEventListener('touchstart', onTouchStart);
             window.removeEventListener('keydown', onKeyDown);
         }

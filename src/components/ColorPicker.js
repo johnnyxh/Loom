@@ -27,13 +27,13 @@ const ColorPicker = ({color, colors, onChangeComplete}) => {
 	const onClickOutside = (e) => {
 		e.stopPropagation();
 		setChromePickerVisible(false);
-		window.removeEventListener('click', onClickOutside);
-		window.removeEventListener('touchstart', onClickOutside);
+		document.removeEventListener('click', onClickOutside);
+		document.removeEventListener('touchstart', onClickOutside);
 	};
 
 	if (chromePickerVisibile) {
-		window.addEventListener('click', onClickOutside, false);
-		window.addEventListener('touchstart', onClickOutside, false);
+		document.addEventListener('click', onClickOutside, false);
+		document.addEventListener('touchstart', onClickOutside, false);
 	}
 
 	return (
