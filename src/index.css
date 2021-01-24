@@ -2,6 +2,10 @@ html {
 	height: 100%;
 }
 
+a {
+	text-decoration: none;
+}
+
 body {
   margin: 0;
   height: 100%;
@@ -10,7 +14,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #00d403;
+  background: #76cdae;
 }
 
 code {
@@ -86,13 +90,15 @@ code {
 }
 
 .tools-itm-selected {
-	stroke: red;
+	stroke: #feb8b7;
 	stroke-width: 20;
 }
 
 .controls-area {
 	grid-column-start: right-col;
 	grid-row-start: main-row;
+	display: flex;
+	flex-flow: column;
 }
 
 .controls-item {
@@ -185,7 +191,20 @@ code {
 	-ms-interpolation-mode: nearest-neighbor;
 }
 
+.range-picker {
+	display: flex;
+	justify-content: space-between;
+}
 
+.range-picker-slider {
+
+}
+
+.range-picker-input {
+	width: 100%;
+	border: 1px solid black;
+	border-radius: 5px;
+}
 
 
 .Typist .Cursor {

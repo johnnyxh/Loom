@@ -215,10 +215,10 @@ const LoomCanvas = () => {
             if (e.touches.length === 1 && toolHandlers && toolHandlers.onToolMove && usingTool) {
                 const fromOffsetX = Math.trunc((previousEvt.touches[0].clientX - canvasRect.left + canvasContainer.scrollLeft) / zoom);
                 const fromOffsetY = Math.trunc((previousEvt.touches[0].clientY - canvasRect.top + canvasContainer.scrollTop) / zoom);
-                const toOffsetX = Math.trunc((e.touches[0].pageX - canvasRect.left + canvasContainer.scrollLeft) / zoom);
-                const toOffsetY = Math.trunc((e.touches[0].pageY - canvasRect.top + canvasContainer.scrollTop) / zoom);
-                const originalOffsetX = Math.trunc((originalEvt.touches[0].pageX - canvasRect.left + canvasContainer.scrollLeft) / zoom);
-                const originalOffsetY = Math.trunc((originalEvt.touches[0].pageY - canvasRect.top + canvasContainer.scrollTop) / zoom);
+                const toOffsetX = Math.trunc((e.touches[0].clientX - canvasRect.left + canvasContainer.scrollLeft) / zoom);
+                const toOffsetY = Math.trunc((e.touches[0].clientY - canvasRect.top + canvasContainer.scrollTop) / zoom);
+                const originalOffsetX = Math.trunc((originalEvt.touches[0].clientX - canvasRect.left + canvasContainer.scrollLeft) / zoom);
+                const originalOffsetY = Math.trunc((originalEvt.touches[0].clientY - canvasRect.top + canvasContainer.scrollTop) / zoom);
                 
                 const affectedPixels = toolHandlers.onToolMove(
                     ctx,
@@ -244,8 +244,8 @@ const LoomCanvas = () => {
             e.preventDefault();
 
             if (toolHandlers && toolHandlers.onToolUp && usingTool) {
-                const offsetX = Math.trunc((previousEvt.touches[0].pageX - canvasRect.left + canvasContainer.scrollLeft) / zoom);
-                const offsetY = Math.trunc((previousEvt.touches[0].pageY - canvasRect.top + canvasContainer.scrollTop) / zoom);
+                const offsetX = Math.trunc((previousEvt.touches[0].clientX - canvasRect.left + canvasContainer.scrollLeft) / zoom);
+                const offsetY = Math.trunc((previousEvt.touches[0].clientY - canvasRect.top + canvasContainer.scrollTop) / zoom);
                 
                 usingTool = false;
                 const affectedPixels = toolHandlers.onToolUp(ctx, tmpCtx, offsetX, offsetY);
@@ -294,8 +294,8 @@ const LoomCanvas = () => {
                 previousEvt = e;
                 originalEvt = e;
 
-                const offsetX = Math.trunc((e.touches[0].pageX - canvasRect.left + canvasContainer.scrollLeft) / zoom);
-                const offsetY = Math.trunc((e.touches[0].pageY - canvasRect.top + canvasContainer.scrollTop) / zoom);
+                const offsetX = Math.trunc((e.touches[0].clientX - canvasRect.left + canvasContainer.scrollLeft) / zoom);
+                const offsetY = Math.trunc((e.touches[0].clientY - canvasRect.top + canvasContainer.scrollTop) / zoom);
 
                 upperLeftCoord.x = offsetX;
                 upperLeftCoord.y = offsetY;
@@ -310,6 +310,8 @@ const LoomCanvas = () => {
         const onKeyDown = (e) => {
             // Undo
             if (e.keyCode === 90 && e.ctrlKey) {
+                e.preventDefault();
+
                 const layerChanged = history.current.undo();
                 if (layerChanged) {
                     tmpCtx.clearRect(0, 0, 650, 450); // TODO: Remove hardcoded width/height
@@ -320,6 +322,8 @@ const LoomCanvas = () => {
 
             // Redo
             else if (e.keyCode === 89 && e.ctrlKey) {
+                e.preventDefault();
+
                 const layerChanged = history.current.redo();
                 if (layerChanged) {
                     tmpCtx.clearRect(0, 0, 650, 450); // TODO: Remove hardcoded width/height

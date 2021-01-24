@@ -14,14 +14,15 @@ function App() {
     return (
     <LoomContextProvider>
       <div className="center">
-          <div style={{
+              <div style={{
             display: 'flex',
             fontWeight: 'bold',
-            fontSize: 32,
-            marginBottom: '50px'
+            fontSize: 24,
+            marginBottom: '10px'
           }}>>>
-            <Typist startDelay={500}>Eat the beans</Typist>
+            <Typist startDelay={500}>Feel free to @Horobol on <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/horobol">TWITTER</a> or <a target="_blank" rel="noopener noreferrer" href="https://discord.gg/bqKMBf5">DISCORD</a> whatever you draw or bugs you find.</Typist>
           </div>
+        <img alt="" src="./favicon-192.png" />
         <div className="main-area">
             <Tools />
             <LoomCanvas />
