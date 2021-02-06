@@ -27,7 +27,6 @@ const Brush = () => {
 			let pattern = '#000000';
 
 			const BrushInitFn = (ctx, tmpCtx, x, y) => {
-				console.log('init');
 				pattern = createPattern(ctx, brushProperties.pattern, activeColor);
 				ctx.strokeStyle = pattern;
 			}

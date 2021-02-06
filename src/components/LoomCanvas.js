@@ -116,12 +116,12 @@ const LoomCanvas = () => {
                     previousEvt = e;
                 }
 
-                const previousOffsetX = Math.trunc(previousEvt.offsetX / zoom);
-                const previousOffsetY = Math.trunc(previousEvt.offsetY / zoom);
-                const offsetX = Math.trunc(e.offsetX / zoom);
-                const offsetY = Math.trunc(e.offsetY / zoom);
-                const originalOffsetX = Math.trunc(originalEvt.offsetX / zoom);
-                const originalOffsetY = Math.trunc(originalEvt.offsetY / zoom);
+                const previousOffsetX = Math.trunc((previousEvt.clientX - canvasRect.left + canvasContainer.scrollLeft) / zoom);
+                const previousOffsetY = Math.trunc((previousEvt.clientY - canvasRect.top + canvasContainer.scrollTop) / zoom);
+                const offsetX = Math.trunc((e.clientX - canvasRect.left + canvasContainer.scrollLeft) / zoom);
+                const offsetY = Math.trunc((e.clientY - canvasRect.top + canvasContainer.scrollTop) / zoom);
+                const originalOffsetX = Math.trunc((originalEvt.clientX - canvasRect.left + canvasContainer.scrollLeft) / zoom);
+                const originalOffsetY = Math.trunc((originalEvt.clientY - canvasRect.top + canvasContainer.scrollTop) / zoom);
 
                 const affectedPixels = toolHandlers.onToolMove(
                     ctx,
@@ -148,8 +148,8 @@ const LoomCanvas = () => {
                 usingTool = false;
 
                 if (e.target.className === 'canvas') {
-                    const offsetX = Math.trunc(e.offsetX / zoom);
-                    const offsetY = Math.trunc(e.offsetY / zoom);
+                    const offsetX = Math.trunc((e.clientX - canvasRect.left + canvasContainer.scrollLeft) / zoom);
+                    const offsetY = Math.trunc((e.clientY - canvasRect.top + canvasContainer.scrollTop) / zoom);
                     
                     const affectedPixels = toolHandlers.onToolUp(ctx, tmpCtx, offsetX, offsetY);
     
@@ -189,6 +189,8 @@ const LoomCanvas = () => {
 
         const onMouseDown = (e) => {
             if (e.button === 0 && toolHandlers && toolHandlers.onToolDown && !activeLayerProperties.locked) {
+                canvasRect = canvasContainer.getBoundingClientRect()
+
                 if (toolHandlers.onToolMove) {
                     usingTool = true;
                     canvasContainer.addEventListener('mousemove', onMouseMove, false);
@@ -196,8 +198,8 @@ const LoomCanvas = () => {
                     document.addEventListener('mouseup', onMouseUp, false);
                 }
 
-                const offsetX = Math.trunc(e.offsetX / zoom);
-                const offsetY = Math.trunc(e.offsetY / zoom);
+                const offsetX = Math.trunc((e.clientX - canvasRect.left + canvasContainer.scrollLeft) / zoom);
+                const offsetY = Math.trunc((e.clientY - canvasRect.top + canvasContainer.scrollTop) / zoom);
 
                 upperLeftCoord.x = offsetX;
                 upperLeftCoord.y = offsetY;
