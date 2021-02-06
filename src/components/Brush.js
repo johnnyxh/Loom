@@ -24,10 +24,17 @@ const Brush = () => {
 	useEffect(() => {
 		if (currentTool === toolTypes.brush) {
 
+			let pattern = '#000000';
+
+			const BrushInitFn = (ctx, tmpCtx, x, y) => {
+				console.log('init');
+				pattern = createPattern(ctx, brushProperties.pattern, activeColor);
+				ctx.strokeStyle = pattern;
+			}
+
 			const BrushFn = (ctx, tmpCtx, prevMove, currentMove, origMove) => {
 				ctx.beginPath();
 			    ctx.moveTo(prevMove.x, prevMove.y);
-			    ctx.strokeStyle = createPattern(ctx, brushProperties.pattern, activeColor);
 			    ctx.lineWidth = brushProperties.size;
 			    ctx.lineCap = "round";
 			    ctx.lineJoin = "round";
@@ -49,7 +56,7 @@ const Brush = () => {
 			};
 
 			setToolHandlers({
-				onToolDown: () => {},
+				onToolDown: BrushInitFn,
 				onToolMove: BrushFn,
 				onToolUp: () => {},
 			});

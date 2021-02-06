@@ -23,10 +23,16 @@ const Eraser = () => {
 	useEffect(() => {
 		if (currentTool === toolTypes.eraser) {
 
+			let pattern = '#000000';
+
+			const EraserInitFn = (ctx, tmpCtx, x, y) => {
+				pattern = createPattern(ctx, eraserProperties.pattern, '#000000');
+			}
+
 			const EraserFn = (ctx, tmpCtx, prevMove, currentMove, origMove) => {
 				ctx.beginPath();
 			    ctx.moveTo(prevMove.x, prevMove.y);
-			    ctx.strokeStyle = createPattern(ctx, eraserProperties.pattern, '#000000');
+			    ctx.strokeStyle = pattern;
 			    ctx.lineWidth = eraserProperties.size;
 			    ctx.lineCap = "round";
 			    ctx.lineJoin = "round";
@@ -48,7 +54,7 @@ const Eraser = () => {
 			};
 
 			setToolHandlers({
-				onToolDown: () => {},
+				onToolDown: EraserInitFn,
 				onToolMove: EraserFn,
 				onToolUp: () => {},
 			});
