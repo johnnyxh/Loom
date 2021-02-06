@@ -146,30 +146,33 @@ const LoomCanvas = () => {
         const onMouseUp = (e) => {
             if (e.button === 0 && toolHandlers && toolHandlers.onToolUp && usingTool) {
                 usingTool = false;
-                const offsetX = Math.trunc(e.offsetX / zoom);
-                const offsetY = Math.trunc(e.offsetY / zoom);
 
-                const affectedPixels = toolHandlers.onToolUp(ctx, tmpCtx, offsetX, offsetY);
-
-                if (affectedPixels) {
-                    isAffected = true;
-                    upperLeftCoord.x = Math.min(upperLeftCoord.x, affectedPixels.topLeft.x);
-                    upperLeftCoord.y = Math.min(upperLeftCoord.y, affectedPixels.topLeft.y);
-                    lowerRightCoord.x = Math.max(lowerRightCoord.x, affectedPixels.bottomRight.x);
-                    lowerRightCoord.y = Math.max(lowerRightCoord.y, affectedPixels.bottomRight.y);
-                }
-
-                if (isAffected) {
-                    history.current.push(new LoomRegionUpdatedCommand(
-                        activeLayer,
-                        upperLeftCoord,
-                        tmpCtx.getImageData(upperLeftCoord.x, upperLeftCoord.y, lowerRightCoord.x - upperLeftCoord.x, lowerRightCoord.y - upperLeftCoord.y),
-                        ctx.getImageData(upperLeftCoord.x, upperLeftCoord.y, lowerRightCoord.x - upperLeftCoord.x, lowerRightCoord.y - upperLeftCoord.y)));
-                
-                    tmpCtx.clearRect(0, 0, 650, 450); // TODO: Remove hardcoded width/height
-                    tmpCtx.drawImage(canvas, 0, 0);
-
-                    setLayerDirty(activeLayer, true);
+                if (e.target.className === 'canvas') {
+                    const offsetX = Math.trunc(e.offsetX / zoom);
+                    const offsetY = Math.trunc(e.offsetY / zoom);
+                    
+                    const affectedPixels = toolHandlers.onToolUp(ctx, tmpCtx, offsetX, offsetY);
+    
+                    if (affectedPixels) {
+                        isAffected = true;
+                        upperLeftCoord.x = Math.min(upperLeftCoord.x, affectedPixels.topLeft.x);
+                        upperLeftCoord.y = Math.min(upperLeftCoord.y, affectedPixels.topLeft.y);
+                        lowerRightCoord.x = Math.max(lowerRightCoord.x, affectedPixels.bottomRight.x);
+                        lowerRightCoord.y = Math.max(lowerRightCoord.y, affectedPixels.bottomRight.y);
+                    }
+    
+                    if (isAffected) {
+                        history.current.push(new LoomRegionUpdatedCommand(
+                            activeLayer,
+                            upperLeftCoord,
+                            tmpCtx.getImageData(upperLeftCoord.x, upperLeftCoord.y, lowerRightCoord.x - upperLeftCoord.x, lowerRightCoord.y - upperLeftCoord.y),
+                            ctx.getImageData(upperLeftCoord.x, upperLeftCoord.y, lowerRightCoord.x - upperLeftCoord.x, lowerRightCoord.y - upperLeftCoord.y)));
+                    
+                        tmpCtx.clearRect(0, 0, 650, 450); // TODO: Remove hardcoded width/height
+                        tmpCtx.drawImage(canvas, 0, 0);
+    
+                        setLayerDirty(activeLayer, true);
+                    }
                 }
 
                 isAffected = false;
