@@ -1,7 +1,9 @@
 import PT from '../data/patternTypes';
 
 const getFlipnotePattern1 = (color) => {
-	const flipnotePattern = new OffscreenCanvas(3, 3);
+	const flipnotePattern = document.createElement('canvas');
+	flipnotePattern.width = 3;
+	flipnotePattern.height = 3;
 	const flipnoteCtx = flipnotePattern.getContext('2d');
 	flipnoteCtx.fillStyle = color;
 	flipnoteCtx.fillRect(0, 0, 1, 1);
@@ -9,7 +11,9 @@ const getFlipnotePattern1 = (color) => {
 };
 
 const getFlipnotePattern2 = (color) => {
-	const flipnotePattern = new OffscreenCanvas(2, 2);
+	const flipnotePattern = document.createElement('canvas');
+	flipnotePattern.width = 2;
+	flipnotePattern.height = 2;
 	const flipnoteCtx = flipnotePattern.getContext('2d');
 	flipnoteCtx.fillStyle = color;
 	flipnoteCtx.fillRect(0, 0, 1, 1);
@@ -17,7 +21,9 @@ const getFlipnotePattern2 = (color) => {
 };
 
 const getFlipnotePattern3 = (color) => {
-	const flipnotePattern = new OffscreenCanvas(2, 2);
+	const flipnotePattern = document.createElement('canvas');
+	flipnotePattern.width = 2;
+	flipnotePattern.height = 2;
 	const flipnoteCtx = flipnotePattern.getContext('2d');
 	flipnoteCtx.fillStyle = color;
 	flipnoteCtx.fillRect(0, 0, 1, 1);
@@ -26,7 +32,9 @@ const getFlipnotePattern3 = (color) => {
 };
 
 const getFlipnotePattern4 = (color) => {
-	const flipnotePattern = new OffscreenCanvas(2, 2);
+	const flipnotePattern = document.createElement('canvas');
+	flipnotePattern.width = 2;
+	flipnotePattern.height = 2;
 	const flipnoteCtx = flipnotePattern.getContext('2d');
 	flipnoteCtx.fillStyle = color;
 	flipnoteCtx.fillRect(0, 0, 1, 1);
@@ -35,7 +43,9 @@ const getFlipnotePattern4 = (color) => {
 };
 
 const getFlipnotePattern5 = (color) => {
-	const flipnotePattern = new OffscreenCanvas(2, 2);
+	const flipnotePattern = document.createElement('canvas');
+	flipnotePattern.width = 2;
+	flipnotePattern.height = 2;
 	const flipnoteCtx = flipnotePattern.getContext('2d');
 	flipnoteCtx.fillStyle = color;
 	flipnoteCtx.fillRect(0, 0, 1, 1);
@@ -44,7 +54,9 @@ const getFlipnotePattern5 = (color) => {
 };
 
 const getFlipnotePattern6 = (color) => {
-	const flipnotePattern = new OffscreenCanvas(2, 2);
+	const flipnotePattern = document.createElement('canvas');
+	flipnotePattern.width = 2;
+	flipnotePattern.height = 2;
 	const flipnoteCtx = flipnotePattern.getContext('2d');
 	flipnoteCtx.fillStyle = color;
 	flipnoteCtx.fillRect(0, 0, 1, 1);
@@ -54,7 +66,9 @@ const getFlipnotePattern6 = (color) => {
 };
 
 const getFlipnotePattern7 = (color) => {
-	const flipnotePattern = new OffscreenCanvas(3, 3);
+	const flipnotePattern = document.createElement('canvas');
+	flipnotePattern.width = 3;
+	flipnotePattern.height = 3;
 	const flipnoteCtx = flipnotePattern.getContext('2d');
 	flipnoteCtx.fillStyle = color;
 	flipnoteCtx.fillRect(0, 0, 1, 1);
@@ -69,7 +83,9 @@ const getFlipnotePattern7 = (color) => {
 };
 
 const getHeartPattern = (color) => {
-	const heartPattern = new OffscreenCanvas(9, 7);
+	const heartPattern = document.createElement('canvas');
+	heartPattern.width = 9;
+	heartPattern.height = 7;
 	const heartCtx = heartPattern.getContext('2d');
 	heartCtx.fillStyle = color;
 	heartCtx.fillRect(2, 0, 2, 1);
